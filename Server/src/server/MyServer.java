@@ -12,7 +12,7 @@ public class MyServer {
 
     public static void main(String[] args) {
         try {
-            // must match MyClient
+            // must match the MyClient
             LocateRegistry.createRegistry(1099);
 
             Method stub = new MethodRemote();

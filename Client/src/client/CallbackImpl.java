@@ -1,6 +1,6 @@
 package client;
 
-import interfaces.Callback;
+import interfaces.Callback; //shared with server
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 

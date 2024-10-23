@@ -1,6 +1,6 @@
 package client;
 
-import interfaces.Method;
+import interfaces.Method; //shared with server
 import java.rmi.Naming;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 public class MyClient {
 
-    // Logger instance for logging
     private static final Logger LOGGER = Logger.getLogger(MyClient.class.getName());
 
     public static void main(String[] args) {
@@ -26,20 +25,18 @@ public class MyClient {
                 System.out.print("Enter a string to send to the server (empty to quit): ");
                 input = scanner.nextLine().trim();
 
-                // Exit when an empty string is entered
                 if (input.isEmpty()) {
                     System.out.println("Exiting...");
                     break;
                 }
-
-                // Send the input via RMI and get the RMI response from the server
+                // create stub and send to server via RMI
                 String rmiResponse = stub.action(input);
 
                 // Registering the callback with the server
                 CallbackImpl callback = new CallbackImpl(serverHostName);
                 stub.registerCallback(callback, input);
 
-                // Display the RMI response
+                // Displaying the RMI response
                 System.out.println("Using RMI from " + serverHostName + ": " + rmiResponse);
             }
 

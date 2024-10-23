@@ -23,26 +23,22 @@ public class MethodRemote extends UnicastRemoteObject implements Method {
         }
     }
 
-    // This method checks if "time" is entered, otherwise capitalizes the string
     @Override
     public String action(String input) throws RemoteException {
         if ("time".equalsIgnoreCase(input)) {
-            // Return the current date and time
             return new SimpleDateFormat("EEE, MMM d, HH:mm:ss yyyy").format(new Date());
         } else {
-            // Return the capitalized version of the input
             return input.toUpperCase();
         }
     }
 
-    // This method registers a callback and invokes the callback method with the result
     @Override
     public void registerCallback(Callback clientCallback, String input) throws RemoteException {
         String response = action(input);
         clientCallback.receiveMessage(response);
     }
 
-    // Method to return the server's hostname
+    // returns the server's hostname
     @Override
     public String getServerHostName() throws RemoteException {
         return serverHostName;
